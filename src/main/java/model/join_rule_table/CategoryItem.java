@@ -1,19 +1,19 @@
-package model;
+package model.join_rule_table;
 
 import jakarta.persistence.*;
+import model.Category;
+import model.items.Item;
 
 @Entity
 public class CategoryItem {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryItem")
-    @Column(name = "ITEM_FK")
+    @JoinColumn(name = "ITEM_ID")
     private Item item;
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryItem")
-    @Column(name = "CATEGORY_FK")
+    @JoinColumn(name = "CATEGORY_ID")
     private Category category;
 
     public Item getItem() {

@@ -1,6 +1,8 @@
 package model;
 
 import jakarta.persistence.*;
+import model.enums.OrderStatus;
+import model.join_rule_table.OrderItem;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Order extends DateFormat{
     @Id
     @GeneratedValue
     @Column(name = "ORDER_ID")

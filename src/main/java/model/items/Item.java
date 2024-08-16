@@ -1,12 +1,17 @@
-package model;
+package model.items;
 
 import jakarta.persistence.*;
+import model.DateFormat;
+import model.join_rule_table.CategoryItem;
+import model.join_rule_table.OrderItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "DTYPE")
+public class Item extends DateFormat {
     @Id
     @GeneratedValue
     @Column(name = "ITEM_ID")
@@ -19,7 +24,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToMany(mappedBy = "items")
+    @OneToMany(mappedBy = "item")
     private List<CategoryItem> categoryItem = new ArrayList<>();
 
     public Long getId() {
@@ -60,5 +65,17 @@ public class Item {
 
     public List<CategoryItem> getCategoryItem() {
         return categoryItem;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                ", orderItems=" + orderItems.size() +
+                ", categoryItem=" + categoryItem.size() +
+                '}';
     }
 }

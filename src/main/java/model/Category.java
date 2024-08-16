@@ -1,19 +1,19 @@
 package model;
 
 import jakarta.persistence.*;
+import model.join_rule_table.CategoryItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Category {
+public class Category extends DateFormat{
     @Id
     @GeneratedValue
-    @Column(name = "CATEGORY_ID")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_ID")
+    @JoinColumn(name = "PARENT_ID")
     private Category parent;
 
     @OneToMany(mappedBy = "parent")

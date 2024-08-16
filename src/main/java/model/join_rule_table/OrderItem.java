@@ -1,9 +1,12 @@
-package model;
+package model.join_rule_table;
 
 import jakarta.persistence.*;
+import model.DateFormat;
+import model.items.Item;
+import model.Order;
 
 @Entity
-public class OrderItem {
+public class OrderItem extends DateFormat {
     @Id
     @GeneratedValue
     private Long id;
